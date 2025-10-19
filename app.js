@@ -32,8 +32,8 @@ resultsEl.insertAdjacentElement("afterend", loadMoreBtn);
 let currentQuery = "";
 let currentPage = 1;
 let totalResults = 0;
-let inFlight = null; // AbortController
-const cache = new Map(); // `${q}:${page}` -> items
+let inFlight = null; 
+const cache = new Map();
 
 const debounce = (fn, delay = 400) => {
   let t, lastArgs, lastThis;
