@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Find Your Movie</title>
+  <meta name="description" content="Search movies by title and view details, powered by the OMDb API." />
+  <meta name="theme-color" content="#000000" />
+
+  <meta property="og:title" content="Find Your Movie" />
+  <meta property="og:description" content="Search movies by title and view details, powered by the OMDb API." />
+  <meta property="og:type" content="website" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to results</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <h1>Find Your <span class="accent">Movie</span></h1>
+      <p class="tagline">Search by title. We’ll fetch results from OMDb.</p>
+      <form id="searchForm" class="search-wrap" role="search" aria-label="Movie search" novalidate>
+        <label for="search" class="sr-only">Search movies by title</label>
+        <input
+          id="search"
+          name="q"
+          type="search"
+          placeholder="Search movies... try ‘fast’"
+          autocomplete="off"
+          autocapitalize="off"
+          spellcheck="false"
+          inputmode="search"
+          aria-describedby="helper"
+        />
+        <button id="clearBtn" type="button" aria-label="Clear search">✕</button>
+      </form>
+      <p id="helper" class="helper">Tip: start typing. We’ll search automatically.</p>
+
+      <div class="toggles" role="group" aria-label="Appearance">
+        <button
+          id="appearanceToggle"
+          class="btn"
+          type="button"
+          aria-label="Toggle appearance"
+          aria-pressed="false"
+        >
+          🔆 Light
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="container" tabindex="-1">
+    <div id="status" class="status" role="status" aria-live="polite"></div>
+    <section id="results" class="grid" aria-label="Search results">
+      <h2 class="sr-only">Search results</h2>
+    </section>
+
+    <template id="cardTemplate">
+      <article class="card">
+        <button class="card-button" type="button" aria-haspopup="dialog">
+          <img class="poster" alt="" loading="lazy" />
+          <div class="card-body">
+            <h3 class="title"></h3>
+            <p class="meta"></p>
+          </div>
+        </button>
+      </article>
+    </template>
+
+    <div
+      id="modal"
+      class="modal hidden"
+      aria-hidden="true"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modalTitle"
+      aria-describedby="modalPlot modalMeta"
+    >
+      <button class="overlay" id="overlay" type="button" aria-label="Close details"></button>
+      <div class="dialog" role="document">
+        <button id="closeModal" class="close" type="button" aria-label="Close">✕</button>
+        <div class="dialog-body">
+          <img id="modalPoster" alt="" class="modal-poster" />
+          <div class="dialog-text">
+            <h2 id="modalTitle"></h2>
+            <p id="modalMeta" class="meta"></p>
+            <p id="modalPlot"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small>
+        Powered by <a href="https://www.omdbapi.com/" target="_blank" rel="noopener noreferrer">OMDb API</a>.
+      </small>
+    </div>
+  </footer>
+
+  <noscript>
+    <p class="no-js">JavaScript is required to search and view details.</p>
+  </noscript>
+
+  <script src="app.js"></script>
+</body>
+</html>
